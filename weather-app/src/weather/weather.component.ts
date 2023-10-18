@@ -23,25 +23,21 @@ export class WeatherComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.weatherService.getWeatherData('london')
-    .subscribe(
-      value => {
-        console.log(value.location);
-        console.log(value.current);
-        
-        this.forecast.location = value.location.name;
-        this.forecast.region = value.location.region
-        this.forecast.country = value.location.country;
-        this.forecast.condition = value.current.condition.text;
-        this.forecast.temperature = value.current.temp_c + '°C';
-        const currentDate = dayjs( (value.location.localtime).split(" ")).format('dddd, DD MMMM')
-        this.forecast.date = currentDate;
+    this.getWeather();
+  }
 
-
-        
-        console.log(this.forecast);
-        
-      }
-    );
+  private getWeather() {
+    this.weatherService.getRawData('london')
+      .subscribe(
+        value => {
+          this.forecast.location = value.location.name;
+          this.forecast.region = value.location.region;
+          this.forecast.country = value.location.country;
+          this.forecast.condition = value.current.condition.text;
+          this.forecast.temperature = value.current.temp_c + '°C';
+          const currentDate = dayjs((value.location.localtime).split(" ")).format('dddd, DD MMMM');
+          this.forecast.date = currentDate;
+        }
+      );
   }
 }

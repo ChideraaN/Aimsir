@@ -11,7 +11,7 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  public getWeatherData(location: string): Observable<Object | any> {
+  public getRawData(location: string): Observable<Object | any> {
     const url = `${this.apiPrefix}q=${location}`;
     const reqHeaders: HttpHeaders = new HttpHeaders ({
       'X-RapidAPI-Key': '557fa0c7b1msh29ce2be9cd239ffp1ae984jsnb6084620e0fb',
