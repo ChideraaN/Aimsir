@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
-import { Dayjs } from 'dayjs';
 import { Forecast } from './forecast';
 import * as dayjs from 'dayjs';
 
